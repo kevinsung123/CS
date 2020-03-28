@@ -34,4 +34,15 @@
 					- #systemctl restart NetworkManager
 					- #nmcli dev wifi list
 					- #nmcli --ask dev wifi connect 와아파이이름
+### ※ 서버 셋팅 Tip
+#### .bashrc 와 .bash_profile 차이
+[enter link description here](https://uroa.tistory.com/114)
 
+#### history Timforamt 지정
+- / etc/profile
+	- export HISTTIMEFORMAT="[%F %T ]"
+	> %F : full date
+	> %T :  time same as %H:%M:%S
+	> [시간포맷](https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/)
+	- source /etc/profile
+	- 

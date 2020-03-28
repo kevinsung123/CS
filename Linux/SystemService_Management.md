@@ -64,9 +64,9 @@
 	- #yum install -y vsftpd ftp
 2. 서버설정
 	- vi /etc/vsftpd/vsftpd.conf		
-	- #익명 접속 막기	
+	- 익명 접속 막기	
 		- anonymous_enable=NO	
-	- #권한 설정 644	
+	- 권한 설정 644	
 		-	local_umask=022
 	- 부팅시 설정
 		1. systemctl enable vsftpd
@@ -101,4 +101,69 @@
 	- permanent로 등록된 서비스 목록 : firewall-cmd --permanent --list-all --zone=dmz
 	- 서비스추가 : firewall-cmd --permanent --zone=dmz --add-service-http
 	- 포트추가 : firewall-cmd --permanent --zone=public --add-port=4000-4100/tcp
-	- 
+### tar 
+1. tar로 압축하기
+	- tar -cvf [파일.tar] [폴더]
+2. tar 압축풀기
+	- tar -xvf [파일명.tar]
+3. tar.gz로 압축하기
+	- tar -zcvf 	
+4.  tar.gz로 압축풀기
+	 - tar -zxvf
+- 옵션 설명
+	- c :파일을 tar로 묶음
+	- p : 파일 권한을 저장
+	- v : 묶거나 파일을 풀 때 과정을 화면으로 출력
+	- f : 파일 이름을 지정
+	- C : 경로를 지정
+	- x :tar 압축을 품
+	- z : gzip으로 압축하거나 해제함
+
+### chmod
+1. 문자열모드 
+``` 
+Chmod 옵션 (reference)(operator)(modes) 파일
+```
+-   reference(대상) :  
+    u : user의 권한 (사용자의 권한)  
+    g : group의 권한 (파일의 group 멤버인 사용자의 권한)  
+    o : other의 권한 (user, group의 멤버가 아닌 사용자의 권한)  
+    a : all의 권한 (위의 셋을 포함하는 모든 사용자의 권한)
+-   operator :  
+    ＋ : 해당 권한을 추가한다.  
+    － : 해당 권한을 제거한다.  
+    = : 해당 권한을 설정한데로 변경한다.
+-   modes :  
+    r : read 권한 (읽기)  
+    w : write 권한 (쓰기)  
+    x : excute 권한 (실행)  
+    － : 사용권한없음
+-   예제 :  
+    chmod ug+rw sample : sample파일의 user나 group 멤버들에게 읽기, 쓰기 권한을 추가  
+    chmod u=rwx,g+x sample : sample파일의 user는 읽기,쓰기,실행 권한 부여, group 멤버들에게 실행권한 추가
+
+2. 8진수법 모드
+``` 
+chmod 옵션 (8진법수) 파일 
+```
+-   잠깐! 참고 사항
+    
+    -   -rwxr-xr-x : 파일 접근 권한 분류 표기로, 처음 -는 파일 분류 타입.
+    -   파일 타입 : d 디렉토리, l(소문자 L) 링크 카운터, s 소켓, p 파이프, - 일반, c 특수문자, b 특수블럭
+-   rwxr-xr-x = 755  
+    처음3개문자 = user의 권한  
+    중간3개문자 = group의 권한  
+    마지막3개문자 = other의 권한  
+    r은 파일 읽기 = 4, w는 파일 쓰기 = 2, x는 파일 실행 = 1로, 3개문자씩 수를 더해서 쓴다.
+    
+-   추가 사항 : 특수 권한  
+    777 = 일반적인 8진법 형태  
+    4777= SetUid 설정 때 4000을 더함  
+    2777= SetGid 설정 때 2000을 더함  
+    1777= Sticky bit 설정 때 1000을 더함
+    
+-   예제 :  
+    chmod 777 test : test 파일의 user, group, other의 권한을 모두 rwx로 변경.  
+    chmod 4755 test : test파일의 user id설정을 지정하고, user에게 rwx 권한 부여, group과 other에게 r-x권한부여
+
+※ [reference](https://ko.wikipedia.org/wiki/Chmod)
