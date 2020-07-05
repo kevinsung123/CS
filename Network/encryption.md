@@ -15,7 +15,19 @@
 2. Symmetric-Key algorithms
 3. Asymmetric-Key algorithms
 ---
-#### What is Symmetric Encryption?
+#### Hash function
+- hash함수는 large random size data를 작은 고정된 size 데이터로 변환하는 알고리즘
+- hash함수의 output은 hash-value 또는 digest라고 일컫음
+- 일방향, The basic opertation of Hash functions does not nedd any key and operate in one-way manner
+- 일방향 작동은 특정 output로부터 input을 계산하기 불가능
+-  일반적인 작동 원리
+	1.  Generation and verification of digital signatures
+	2.  Checksum/Message integrity checks
+	3.  Source integrity services via MAC
+	4.  Derivation of sub-keys in key-establishment protocols & algorithms
+	5.  Generation of pseudorandom numbers
+---
+#### Symmetric Encryption
 - 한개의 secret key로 encrypt/decrypt를 할떄 사용
 - 반대가 asymmetric encryption( 한쌍의 key pair를 사용, public/private)
 - 2가지 종류가 존재
